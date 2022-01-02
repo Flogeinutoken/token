@@ -641,13 +641,11 @@ pragma solidity ^0.8.11;
       
       function setTaxFeePercent(uint256 taxFee) external onlyOwner() {
           _taxFee = taxFee;
-          require(_taxFee >= 0, "Tax fee must be greater than or equal to zero.");
           require(_taxFee+_liquidityFee < 26, "Sum of taxes must be under 26%");
       }
       
       function setLiquidityFeePercent(uint256 liquidityFee) external onlyOwner() {
           _liquidityFee = liquidityFee;
-          require(_liquidityFee >= 0, "Liquidity fee must be greater than or equal to zero.");
           require(_taxFee+_liquidityFee < 26, "Sum of taxes must be under 26%");
       }
      
