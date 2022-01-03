@@ -456,7 +456,7 @@ pragma solidity ^0.8.11;
       address[] private _excluded;
      
       uint256 private constant MAX = ~uint256(0);
-      uint256 private _tTotal = 1000000000 * 10**6 * 10**9;
+      uint256 private _tTotal = 100000000 * 10**6 * 10**9;
       uint256 private _rTotal = (MAX - (MAX % _tTotal));
       uint256 private _tFeeTotal;
   
@@ -641,20 +641,19 @@ pragma solidity ^0.8.11;
       
       function setTaxFeePercent(uint256 taxFee) external onlyOwner() {
           _taxFee = taxFee;
-          require(_taxFee >= 0, "Tax fee must be greater than or equal to zero.");
           require(_taxFee+_liquidityFee < 26, "Sum of taxes must be under 26%");
       }
       
       function setLiquidityFeePercent(uint256 liquidityFee) external onlyOwner() {
           _liquidityFee = liquidityFee;
-          require(_liquidityFee >= 0, "Liquidity fee must be greater than or equal to zero.");
           require(_taxFee+_liquidityFee < 26, "Sum of taxes must be under 26%");
       }
      
       function setMaxTxPercent(uint256 maxTxPercent) external onlyOwner() {
-          require(maxTxPercent >= 1, "maxTxPercent should be greater than or equal to 0.05%");
+          //maxtx divisor is 10000 thus 100 is 1% and so on
+          require(maxTxPercent >= 5, "maxTxPercent should be greater than or equal to 0.05%");
           _maxTxAmount = _tTotal.mul(maxTxPercent).div(
-              10**2
+              10**4
           );
       }
   
