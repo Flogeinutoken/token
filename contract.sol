@@ -650,9 +650,10 @@ pragma solidity ^0.8.11;
       }
      
       function setMaxTxPercent(uint256 maxTxPercent) external onlyOwner() {
-          require(maxTxPercent >= 1, "maxTxPercent should be greater than or equal to 0.05%");
+          //maxtx divisor is 10000 thus 100 is 1% and so on
+          require(maxTxPercent >= 5, "maxTxPercent should be greater than or equal to 0.05%");
           _maxTxAmount = _tTotal.mul(maxTxPercent).div(
-              10**2
+              10**4
           );
       }
   
