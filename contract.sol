@@ -479,7 +479,7 @@ pragma solidity ^0.8.11;
       uint256 public _maxTxAmount = 5000000 * 10**6 * 10**9;
       uint256 private numTokensSellToAddToLiquidity = 500000 * 10**6 * 10**9;
 
-      address public routerAddress;
+      address public routerAddress = 0x10ED43C718714eb63d5aA57B78B54704E256024E;
       
       event MinTokensBeforeSwapUpdated(uint256 minTokensBeforeSwap);
       event SwapAndLiquifyEnabledUpdated(bool enabled);
